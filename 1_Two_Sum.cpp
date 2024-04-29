@@ -59,4 +59,4 @@ public:
         }
         return {}; // No solution found
     }
-};
+}; 
