@@ -77,7 +77,7 @@ public:
         vector<vector<string>> ans;
 
         for (int i = 0; i < n; i++) {
-            if (mergedMail[i].size() == 0) continue;
+            if (mergedMail[i].size() == 0) continue; 
             sort(mergedMail[i].begin(), mergedMail[i].end());
             vector<string> temp;
             temp.push_back(details[i][0]);
