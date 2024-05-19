@@ -10,7 +10,7 @@ class Solution {
 
         if (memo.count(currentStep) && memo[currentStep][jumpPower][canJump] != -1)
             return memo[currentStep][jumpPower][canJump];
-
+    
         int result = (currentStep == targetStep);
 
         if (canJump)
