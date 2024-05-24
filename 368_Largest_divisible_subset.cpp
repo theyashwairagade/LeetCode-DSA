@@ -2,27 +2,34 @@ class Solution {
 public:
     vector<int> largestDivisibleSubset(vector<int>& nums) {
         int n=nums.size();
-        vector<int>ans;
-        if(n==0)    return ans;
-        
+        vector<int> dp(n,1);
+        vector<int> prev(n,1);
         sort(nums.begin(),nums.end());
-        int max=1;
-        vector<int>dp(n+1,1);
+        int maxi=0,lastindex=0;
+        prev[0]=0;
         for(int i=1;i<n;i++)
+        {
+            prev[i]=i;
             for(int j=0;j<i;j++)
-                if(nums[i]%nums[j]==0 && 1+dp[j]>dp[i])
+                if(nums[i]%nums[j]==0 && dp[i]<dp[j]+1)
                 {
-                    dp[i]=1+dp[j];
-                    if(max<dp[i])   max=dp[i];
+                    dp[i]=dp[j]+1;
+                    prev[i]=j;
                 }
-        int prev=-1;
-        for(int i=n-1;i>=0;i--)
-            if(dp[i]==max && (prev%nums[i]==0 || prev==-1))
+
+            if(dp[i]>maxi)
             {
-                ans.push_back(nums[i]);
-                max--;
-                prev=nums[i];
+                lastindex=i;
+                maxi=dp[i];
             }
+        }
+
+        vector<int> ans;
+        ans.push_back(nums[lastindex]);
+        while(prev[lastindex]!=lastindex)
+            ans.push_back(nums[lastindex=prev[lastindex]]);
+            
+        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
