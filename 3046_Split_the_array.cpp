@@ -6,4 +6,4 @@ public:
         for(auto pair: mp)  if(mp[pair.first]>2)  return false;
         return true;
     }
-};
+}; 
